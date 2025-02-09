@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>San Valentín</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            height: 100vh;
+            background-color: pink;
+            text-align: center;
+            color: white;
+            font-size: 2rem;
+            background-image: repeating-linear-gradient(45deg, red, pink 10%, white 20%);
+        }
+        .content {
+            background: rgba(0, 0, 0, 0.6);
+            padding: 20px;
+            border-radius: 10px;
+        }
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+        .buttons {
+            display: flex;
+            gap: 20px;
+            margin-top: 20px;
+        }
+        button {
+            font-size: 1.2rem;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .yes {
+            background: #ff4081;
+            color: white;
+            transition: all 0.3s ease;
+        }
+        .no {
+            background: #6200ea;
+            color: white;
+        }
+        .emoji {
+            font-size: 5rem;
+            animation: blink 1s infinite alternate;
+        }
+        @keyframes blink {
+            0% { transform: scale(1); }
+            100% { transform: scale(1.1); }
+        }
+    </style>
+</head>
+<body>
+    <audio id="backgroundMusic" loop>
+        <source src="https://www.mboxdrive.com/Camila-TodoCambio.mp3" type="audio/mp3">
+    </audio>
+    <button onclick="toggleMusic()">🎵 Reproducir/Pausar Música</button>
+    <div class="content">
+        <h1 id="question">¿Quieres ser mi San Valentín, Weny? 💖</h1>
+        <div class="emoji">❤️💞💓💗💖💕💘💝</div>
+        <div class="buttons">
+            <button class="yes" id="yesButton" onclick="acceptLove()">Sí</button>
+            <button class="no" onclick="rejectLove()">No</button>
+        </div>
+    </div>
+
+    <script>
+        const messages = [
+            "Este 14 de febrero no quiero flores ni chocolates… solo quiero que digas que sí. 💕",
+            "¿Sabías que hay un premio al mejor San Valentín? ¿Me lo darías si aceptas ser el mío? 😍",
+            "San Valentín sería solo un día más si no lo celebro contigo. ¿Aceptas hacerlo especial?",
+            "Si el amor tuviera un día favorito, seguro sería el que tú digas que sí. 💖",
+            "¿Me permites robarte una sonrisa este 14 de febrero… y el resto de mi vida? 😘",
+            "No quiero un San Valentín cualquiera, quiero uno donde tú seas mi razón de celebrar. 💕",
+            "Este 14 de febrero quiero escribir nuestra historia en vez de leer la de otros. ¿Me acompañas? 📖💘",
+            "Si el amor es un camino, quiero que el 14 de febrero sea nuestro punto de partida.",
+            "Dicen que el amor se siente más en San Valentín… ¿y si lo sentimos juntos? ❤️",
+            "No sé qué tan bueno sea para los regalos, pero te prometo que mi mejor obsequio será hacerte feliz. 🎁",
+            "Cupido ya hizo su trabajo, ahora solo falta que me digas que sí. 😉",
+            "Si aceptas ser mi San Valentín, prometo no hacerme el romántico solo un día al año. 😏❤️",
+            "¿Crees en el destino? Porque el mío dice que pasaremos juntos este 14 de febrero. 😘",
+            "Apuesto a que nadie más te ha pedido ser su San Valentín con una sonrisa tan nerviosa como la mía. 😅💕",
+            "Dicen que el chocolate es el mejor regalo en San Valentín… pero yo creo que eres mejor que cualquier chocolate. 🍫💖",
+            "San Valentín no es San Valentín si no estás tú. ¿Aceptas ser mi razón de celebrar? 💖",
+            "No quiero este 14 de febrero sin ti… ¿Me harías el honor de ser mi San Valentín? 🌹",
+            "Si el amor tuviera un símbolo, sería tu nombre en mi corazón. 💕",
+            "Te elijo hoy, el 14 de febrero y todos los días que vengan después. ¿Dices que sí? 💘",
+            "Si me dices que sí, prometo hacer que cada día se sienta como San Valentín. ❤️"
+        ];
+        let index = 0;
+        let yesButton = document.getElementById("yesButton");
+        let music = document.getElementById("backgroundMusic");
+
+        function rejectLove() {
+            document.getElementById("question").textContent = messages[index];
+            index = (index + 1) % messages.length;
+            yesButton.style.fontSize = (parseFloat(getComputedStyle(yesButton).fontSize) + 5) + "px";
+            yesButton.style.padding = (parseFloat(getComputedStyle(yesButton).padding) + 5) + "px";
+            if (parseFloat(getComputedStyle(yesButton).fontSize) > 100) {
+                yesButton.style.width = "100vw";
+                yesButton.style.height = "100vh";
+            }
+        }
+
+        function acceptLove() {
+            alert("¡Sabía que dirías que sí! 💖😍");
+        }
+
+        function toggleMusic() {
+            if (music.paused) {
+                music.play();
+            } else {
+                music.pause();
+            }
+        }
+    </script>
+</body>
+</html>
+
