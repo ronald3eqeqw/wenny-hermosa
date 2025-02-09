@@ -1,4 +1,4 @@
-            <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
@@ -22,11 +22,14 @@
             color: white;
             font-size: 2rem;
             background-image: repeating-linear-gradient(45deg, red, pink 10%, white 20%);
+            overflow: hidden;
         }
         .content {
             background: rgba(0, 0, 0, 0.6);
             padding: 20px;
             border-radius: 10px;
+            position: relative;
+            z-index: 2;
         }
         h1 {
             font-size: 3rem;
@@ -60,6 +63,21 @@
         @keyframes blink {
             0% { transform: scale(1); }
             100% { transform: scale(1.1); }
+        }
+        .heart, .bear {
+            position: absolute;
+            font-size: 2rem;
+            animation: float 5s linear infinite;
+        }
+        @keyframes float {
+            from {
+                transform: translateY(100vh);
+                opacity: 1;
+            }
+            to {
+                transform: translateY(-10vh);
+                opacity: 0;
+            }
         }
     </style>
 </head>
@@ -109,10 +127,11 @@
             index = (index + 1) % messages.length;
             yesButton.style.fontSize = (parseFloat(getComputedStyle(yesButton).fontSize) + 5) + "px";
             yesButton.style.padding = (parseFloat(getComputedStyle(yesButton).padding) + 5) + "px";
+            createFloatingElements('🐻‍❄️🐻‍💞🐻', 1);
         }
 
         function acceptLove() {
-            alert("¡Sabía que dirías que sí! 💖😍");
+            createFloatingElements('❤️💖💘', 200);
         }
 
         function toggleMusic() {
@@ -120,6 +139,18 @@
                 music.play();
             } else {
                 music.pause();
+            }
+        }
+
+        function createFloatingElements(content, count) {
+            for (let i = 0; i < count; i++) {
+                let element = document.createElement("div");
+                element.className = "heart";
+                element.innerHTML = content;
+                element.style.left = Math.random() * 100 + "vw";
+                element.style.animationDuration = (Math.random() * 3 + 2) + "s";
+                document.body.appendChild(element);
+                setTimeout(() => element.remove(), 5000);
             }
         }
     </script>
