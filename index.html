@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+            <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
@@ -65,7 +65,7 @@
 </head>
 <body>
     <audio id="backgroundMusic" loop>
-        <source src="https://www.mboxdrive.com/Río Roma - Mi Persona Favorita (Lyric Video).mp3" type="audio/mp3">
+        <source src="music.mp3" type="audio/mp3">
     </audio>
     <button onclick="toggleMusic()">🎵 Reproducir/Pausar Música</button>
     <div class="content">
@@ -109,10 +109,6 @@
             index = (index + 1) % messages.length;
             yesButton.style.fontSize = (parseFloat(getComputedStyle(yesButton).fontSize) + 5) + "px";
             yesButton.style.padding = (parseFloat(getComputedStyle(yesButton).padding) + 5) + "px";
-            if (parseFloat(getComputedStyle(yesButton).fontSize) > 100) {
-                yesButton.style.width = "100vw";
-                yesButton.style.height = "100vh";
-            }
         }
 
         function acceptLove() {
@@ -129,4 +125,3 @@
     </script>
 </body>
 </html>
-
